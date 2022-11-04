@@ -15,6 +15,19 @@
 
 */
 
+class n {
+
+    constructor(min,max) {
+        this.min = min
+        this.max = max
+
+        function numb(min, max) {
+            var x = Math.floor(Math.random() * (max - min) + min)
+            return x
+        }
+    }
+}
+
 const poteA = {
     /*A= Napoli, Porto, Bayern, Tottenham, Chelsea, Real Madrid, City, PSG*/
     Napoli: {
@@ -52,102 +65,123 @@ const poteA = {
         gp: 'G'
     },
 
-    Paris: {
-        pais: 'FRA',
+    Benfica: {
+        pais: 'POR',
         gp: 'H'
     }
 }
 
 const poteB= {
-    /*B= Liverpool, Brugge, Inter, Eintracht, Milan, Leipzing, Borussia, Benfica*/
+    /*B= Liverpool, Brugge, Inter, Eintracht, Milan, Leipzing, Borussia, Paris*/
     
     Liverpool: {
-        pais : 'ING',
-        gp : 'A'
+        pais: 'ING',
+        gp: 'A'
     },
 
     Brugge : {
-        pais : 'BEL',
-        gp : 'B'
+        pais: 'BEL',
+        gp: 'B'
     },
 
     Inter : {
-        pais : 'ITA',
-        gp : 'C'
+        pais: 'ITA',
+        gp: 'C'
     },
 
     Eintracht : {
-        pais : 'ALE',
-        gp : 'D'
+        pais: 'ALE',
+        gp: 'D'
     },
 
     Milan : {
-        pais : 'ITA',
-        gp : 'E'
+        pais: 'ITA',
+        gp: 'E'
     },
 
     Leipzing : {
-        pais : 'ALE',
-        gp : 'F'
+        pais: 'ALE',
+        gp: 'F'
     },
 
     Borussia : {
-        pais : 'ALE',
-        gp : 'G'
+        pais: 'ALE',
+        gp: 'G'
     },
 
-    Benfica : {
-        pais : 'POR',
-        gp : 'H'
+    Paris : {
+        pais: 'FRA',
+        gp: 'H'
     }
 }
 
+var lB = []
+var lA = []
+var c = 0
 
-for (c = 0; c < 8; c++){
 
-    var Sa = []
-    var Sb = []
-    function sorteio() {
-        return Math.floor(Math.random() * (8 - 0 + 1) + 0)
-    }      
+while (c < 8) {
 
-    while (Sa.length < 6) {
-        var resultado = sorteio()
+    var x =  new n(0,8)
+    console.log(x)
 
-        if (Sa.indexOf(resultado) === resultado){
-            Sa.push(resultado)
-        }
+    if (lA.indexOf(x) === -1){
+        lA.push(x) 
+    } else {
+        x = new n(0,8)
     }
 
-    while (Sb.length < 6) {
-        var resultado = sorteio()
-
-        if (Sb.indexOf(resultado) === resultado){
-            Sb.push(resultado)
-        }
+    var y = new n(0,8)
+    console.log(y)
+    if (lB.indexOf(y) === -1){
+        lB.push(y) 
+    } else {
+        y = new n(0,8)
     }
 
-    var a = sorteio()
-    var b = sorteio()
+    console.log(lA)
+    console.log(lB)
 
+    var timeA = Object.entries(poteA)[lA[lA.length - 1]]
+    var timeA_Pais =  timeA[1].pais
+    var timeA_gp = timeA[1].gp
 
-    var timeA = Object.entries(poteA)[a]
-    var timeA_Pais =  Object.values(poteA)[a].pais
-    var timeA_gp = Object.values(poteA)[a].gp
-    var timeB = Object.entries(poteB)[b] 
-    var timeB_Pais = Object.values(poteB)[b].pais
+        
 
-    var timeB_gp = Object.values(poteB)[b].gp
-
+    var timeB = Object.entries(poteB)[lB[lB.length - 1]]
+    var timeB_Pais = timeB[1].pais
+    var timeB_gp = timeB[1].gp
 
     if (timeA_Pais === timeB_Pais || timeA_gp === timeB_gp) {    
-        c = c-1
+        c--
+        console.log('Reg \n' )
+        lA.pop()
+        lB.pop()
     }        
 
     else {
         console.log(timeA[0] + ' x ' + timeB[0])
-        timeA = ''
-        timeB = ''       
+        c++
     }
 
 }
+
+/*function duplicados(a) {
+    function n() {
+        return Math.floor(Math.random() * (8 - 0) + 0)
+    }
+    if (a.indexOf(n()) === -1) {
+        a.push(n())
+    } else {
+        n()
+    }
+}
+
+function duplicado(a) {
+    function n() {
+        return Math.floor(Math.random() * (8 - 0) + 0)
+    }
+    if (a.indexOf(n()) == -1) {
+        a.push(n())
+    } 
+}*/

@@ -15,19 +15,6 @@
 
 */
 
-class n {
-
-    constructor(min,max) {
-        this.min = min
-        this.max = max
-
-        function numb(min, max) {
-            var x = Math.floor(Math.random() * (max - min) + min)
-            return x
-        }
-    }
-}
-
 const poteA = {
     /*A= Napoli, Porto, Bayern, Tottenham, Chelsea, Real Madrid, City, PSG*/
     Napoli: {
@@ -117,55 +104,62 @@ const poteB= {
 
 var lB = []
 var lA = []
-var c = 0
+ucl()
+
+function ucl() {
+    for (var c = 0; c < 8; c++) {
+
+        function sort(a) {
+            function sorteio() {
+                return Math.floor(Math.random() * (7 - 0 + 1) + 0)
+            }
+            
+            var resultado = sorteio()
+            
+            if (a.indexOf(resultado) === -1 ){
+                a.push(resultado)
+            } else {
+                sort(a)
+            }
+        }
 
 
-while (c < 8) {
+        sort(lA)
+        sort(lB)
 
-    var x =  new n(0,8)
-    console.log(x)
+        if(lA.length != lB.length) {
+            if (lA.length < lB.length) {
+                sort(lA)
+            }
+            else {
+                sort(lB)
+            }
+        }
 
-    if (lA.indexOf(x) === -1){
-        lA.push(x) 
-    } else {
-        x = new n(0,8)
-    }
 
-    var y = new n(0,8)
-    console.log(y)
-    if (lB.indexOf(y) === -1){
-        lB.push(y) 
-    } else {
-        y = new n(0,8)
-    }
+        var timeA = Object.entries(poteA)[lA[lA.length - 1]]
+        var timeA_Pais =  timeA[1].pais
+        var timeA_gp = timeA[1].gp
 
-    console.log(lA)
-    console.log(lB)
-
-    var timeA = Object.entries(poteA)[lA[lA.length - 1]]
-    var timeA_Pais =  timeA[1].pais
-    var timeA_gp = timeA[1].gp
 
         
+        var timeB = Object.entries(poteB)[lB[lB.length - 1]]
+        var timeB_Pais = timeB[1].pais
+        var timeB_gp = timeB[1].gp
 
-    var timeB = Object.entries(poteB)[lB[lB.length - 1]]
-    var timeB_Pais = timeB[1].pais
-    var timeB_gp = timeB[1].gp
+        if (timeA_Pais === timeB_Pais || timeA_gp === timeB_gp) {    
+            c = c - 1
+            lA.pop()
+            lB.pop()
+        }        
 
-    if (timeA_Pais === timeB_Pais || timeA_gp === timeB_gp) {    
-        c--
-        console.log('Reg \n' )
-        lA.pop()
-        lB.pop()
-    }        
+        else {
+            console.log(timeA[0] + ' x ' + timeB[0])
+        }
 
-    else {
-        console.log(timeA[0] + ' x ' + timeB[0])
-        c++
     }
-
 }
-
+console.log('fim')
 /*function duplicados(a) {
     function n() {
         return Math.floor(Math.random() * (8 - 0) + 0)
